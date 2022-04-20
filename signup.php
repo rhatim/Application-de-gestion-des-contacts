@@ -1,9 +1,9 @@
 <?php
 session_start();
 if(!empty($_SESSION["name"])) {
-    header('location:contact.php');
+    header('location:contactlist.php');
 }
-require_once('userFunctionDb.php');
+require_once('UserFunctionDb.php');
 $error      = "";
 $username   = null;
 $pass       = null;
@@ -63,7 +63,7 @@ if (isset($_POST['signup'])){
         </div>
         
         <div class="d-grid">
-          <a href="login.html"class="btn btn-dark text-white">SIGN UP</a>
+          <button type="submit" name = "signup" class="btn btn-dark text-white">SIGN UP</button>
         </div>
         <p class="text-center mt-3"><span> <a class="text-black-50" href="login.html">Login</a> </span> </p>
       </form>

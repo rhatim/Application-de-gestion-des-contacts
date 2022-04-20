@@ -1,3 +1,27 @@
+<?php
+session_start();
+if(!empty($_SESSION["name"])) {
+    header('location:contact.php');
+}
+require_once('userFunctionDb.php');
+    $error          = "";
+    $username       = null;
+    $pass           = null;
+    $user           = new user();
+
+if (isset($_POST['login'])) {
+    $username       = $_POST['username'];       
+    $pass           = $_POST['password'];
+    $user->SetName($_POST['username']);
+    $user->SetPassword($_POST['password']);
+
+    if($user->login()) {
+        header("Location: profil.php");
+    } else {
+    $error = "Username or password is incorrect!";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +37,7 @@
         <h1 class="title text-white ">contact list</h1>
         <a class="text-white" href="signup.html">signup</a>
     </nav>
-    <form  class="container bg-white mt-5 shadow-lg p-3 mb-5 bg-body rounded" style="max-width: 475px">
+    <form method="$_POST" class="container bg-white mt-5 shadow-lg p-3 mb-5 bg-body rounded" style="max-width: 475px">
         <div class=" container bg-red"><h1></div>
         <h2 class="pt-3 text-center">LOGIN</h2>
         <div class="opacity-75">
@@ -32,9 +56,7 @@
           </div>
         </div>
         
-        <a href="contactlist.html" class="d-grid btn btn-dark text-white">
-            LOGIN
-        </a>
+        <button type="submit" name="login" class="d-grid btn btn-dark text-white">LOGIN</button>
         
         <p class="text-center mt-3"><span> <a class="text-black-50" href="signup.html">signup</a> </span> </p>
       </form>
