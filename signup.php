@@ -1,3 +1,28 @@
+<?php
+session_start();
+if(!empty($_SESSION["name"])) {
+    header('location:contact.php');
+}
+require_once('userFunctionDb.php');
+$error      = "";
+$username   = null;
+$pass       = null;
+$cpass      = null;
+$user       = new user();
+
+if (isset($_POST['signup'])){
+    $username = $_POST['username'];       
+    $pass     = $_POST['password'];
+    $cpass    = $_POST['cpassword'];
+    $user->SetName($_POST['username']);
+    $user->SetPassword($_POST['password']);
+    if($user->addUser()) {
+            header("Location:login.php?done=Your account has been created successfully! Try to login.");
+    } else {
+    $error="Username is already in use! Please try another one.";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +38,7 @@
         <h1 class="title text-white ">contact list</h1>
         <a class="text-white" href="login.html">Login</a>
     </nav>
-    <form  class="container bg-white mt-5 shadow-lg p-3 mb-5 bg-body rounded"" style="max-width: 475px">
+    <form method="POST" class="container bg-white mt-5 shadow-lg p-3 mb-5 bg-body rounded" style="max-width: 475px">
         <div class=" container bg-red"><h1></div>
         <h2 class="pt-3 text-center">SIGN UP</h2>
         <div class="opacity-75">
