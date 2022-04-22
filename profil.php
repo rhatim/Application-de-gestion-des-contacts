@@ -1,3 +1,13 @@
+<?php
+require_once('userFunctionDb.php');
+session_start();
+if(empty($_SESSION["name"])) {
+        header('location:login.php');
+    }
+  $user = new user();
+  $user->SetId($_SESSION['id']);
+  $res=$user->Select();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

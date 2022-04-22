@@ -10,10 +10,11 @@ require_once('userFunctionDb.php');
     $user           = new user();
 
 if (isset($_POST['login'])) {
-    $username       = $_POST['username'];       
-    $pass           = $_POST['password'];
-    $user->SetName($_POST['username']);
-    $user->SetPassword($_POST['password']);
+   $_SESSION['date_last_login'] = date()
+     $username       = $_POST['username'];       
+     $pass           = $_POST['password'];
+     $user->SetName($_POST['username']);
+     $user->SetPassword($_POST['password']);
 
     if($user->login()) {
         header("Location: profil.php");
