@@ -3,7 +3,7 @@ class connection {
 
   private $Host = "localhost";
   private $User = "root";
-  private $Password = "pass";
+  private $Password = "";
   private $data_base_name = "gestion_des_contacts";
 
   protected function dbConnection() {

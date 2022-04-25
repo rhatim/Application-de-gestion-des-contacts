@@ -3,7 +3,7 @@ session_start();
 if(!empty($_SESSION["name"])) {
     header('location:contactlist.php');
 }
-require_once('UserFunctionDb.php');
+require_once('UserFunction.php');
 $error      = "";
 $username   = null;
 $pass       = null;
@@ -11,10 +11,10 @@ $cpass      = null;
 $user       = new user();
 
 if (isset($_POST['signup'])){
-    $username = $_POST['username'];       
+    $name = $_POST['name'];       
     $pass     = $_POST['password'];
-    $cpass    = $_POST['cpassword'];
-    $user->SetName($_POST['username']);
+    $cpass    = $_POST['confirmpassword'];
+    $user->SetName($_POST['name']);
     $user->SetPassword($_POST['password']);
     if($user->addUser()) {
             header("Location:login.php?done=Your account has been created successfully! Try to login.");
@@ -45,9 +45,9 @@ if (isset($_POST['signup'])){
           <p class="pt-3 text-center">Entrer your credentials to access your account</p>
         </div>
         <div class="mb-3">
-          <label for="password" class="form-label">Email</label>
+          <label for="password" class="form-label">Username</label>
           <div class="opacity-50">
-            <input type="email" name="email" class="form-control" placeholder="Entrer your email">
+            <input type="text" name="name" class="form-control" placeholder="Entrer your name">
           </div>
         </div>
         <div class="mb-3">

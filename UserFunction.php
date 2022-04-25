@@ -1,5 +1,5 @@
 <?php
-require_once('connectDb.php');
+require_once('connectiondatabase.php');
 class user extends connection {
 
 
@@ -13,7 +13,7 @@ class user extends connection {
 
 
     public function getUser() {
-        $result = $this -> getData("select * from comptes where name =?");
+        $result = $this -> getData("select * from users where name =?");
         $result -> execute([$this -> name]);
         return $result;
     }
@@ -28,7 +28,7 @@ class user extends connection {
             if($numrows->rowCount()>0){
                 return false;
             } else {
-                $exec = $this->getData("insert into comptes (name, password) values (?,?)");
+                $exec = $this->getData("insert into users (name, password) values (?,?)");
                 $this->password = password_hash( $this->password, PASSWORD_DEFAULT);
                 $exec->execute([$this->name,$this->password]); 
                 return true;
@@ -70,7 +70,7 @@ class user extends connection {
 
     public function Select() {
       try {
-        $result = $this->getData("select * from comptes where id =?");
+        $result = $this->getData("select * from users where id =?");
         $result->execute([$this->id]);
         return $result->fetch(PDO::FETCH_ASSOC);
       }

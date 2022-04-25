@@ -1,8 +1,8 @@
 <?php
-require_once('userFunctionDb.php');
+require_once('UserFunction.php');
 session_start();
 if(empty($_SESSION["name"])) {
-        header('location:login.php');
+    header('location:login.php');
     }
   $user = new user();
   $user->SetId($_SESSION['id']);
@@ -23,29 +23,29 @@ if(empty($_SESSION["name"])) {
         <nav class="navbar navbar-light bg-black bg-opacity-75 px-3">
           <h1 class="title text-white ">contact list</h1>
           <div>
-            <a  class="text-white mx-2 text-decoration-none" href="profil.html">Dorso</a>
-            <a class="text-white mx-2 text-decoration-none" href="contactlist.html">contacts</a>
-            <a class="text-white mx-2 text-decoration-none" href="accueil.html">Logout</a>
+            <a  class="text-white mx-2 text-decoration-none" href="profil.php"><?php echo $_SESSION['name']?></a>
+            <a class="text-white mx-2 text-decoration-none" href="contactlist.php">contacts</a>
+            <a class="text-white mx-2 text-decoration-none" href="accueil.php">Logout</a>
           </div>
             
         </nav>
         <main>
             <div class="d-flex justify-content-center align-items-center">
-                <div class="bg-light p-5 m-5 w-100">
-                    <h1 class="mb-5">Welcome,</h1>
+                <div class="bg-secondary shadow-lg p-3 mb-5 bg-body rounded p-5 m-5 w-100">
+                    <h1 class="mb-5">Welcome, <?php echo $_SESSION['name']?></h1>
                     <h4>Your profile:</h4>
                     <div class="row px-3 border-top border-dark mt-4 pt-3">
-                        <p class="col-sm-3 mb-0 p-1">Username:</p>
-                        <p class="col-sm-9 mb-0 p-1"></p>
+                        <p class="col-sm-4 mb-0 p-1">Username: <?php echo $_SESSION['name']?></?php></p>
+                        <p class="col-sm-8 mb-0 p-1"></p>
                     </div>
                     <div class="row px-3 border-top border-dark mt-4 pt-3">
-                        <p class="col-sm-3 mb-0 p-1">Signup date:</p>
-                        <p class="col-sm-9 mb-0 p-1"></p>
+                        <p class="col-sm-4 mb-0 p-1">Signup date: <?php echo $_SESSION['datelog']?></p>
+                        <p class="col-sm-8 mb-0 p-1"></p>
                     </div>
                     
                     <div class="row px-3 border-top border-dark mt-4 pt-3">
-                        <p class="col-sm-3 mb-0 p-1">Last login:</p>
-                        <p class="col-sm-9 mb-0 p-1"></p>
+                        <p class="col-sm-4 mb-0 p-1">Last login: <?php echo $_SESSION['datelog']?></p>
+                        <p class="col-sm-8 mb-0 p-1"></p>
                     </div>
                 </div>
             </div>
